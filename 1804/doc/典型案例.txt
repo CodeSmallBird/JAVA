@@ -1,0 +1,4 @@
+
+对象间的联系，对象定义？
+1对1--单个对象---ex: Door door = new Door();
+1对多--多个对象关联--ex: List<OrderDetail>orderDetails = new ArrayList<OrderDetail>();

@@ -1,0 +1,1152 @@
+﻿
+
+2014_04月月考_04月29日_JAVA
+
+*1. 请看下列代码：
+ public class Person {
+   private String name;
+   public Person(String name) { this.name = name; }
+   public boolean equals(Person p) {
+     return p.name.equals(this.name);
+   }
+ }
+下列说法正确的是：
+*
+A. Person类的equals方法没有覆盖Object类的equals方法
+B. 编译错误，因为私有属性不能在equals方法中被访问
+C. 基于Hash的数据结构可以正确工作，
+    但是Person类必须覆盖hashCode方法
+D. 当向Set集合中添加Person对象时，
+    equals方法中的return语句能避免重复
+*正确答案：A*
+
+
+*2. 在Java语言中，下列说法正确的是：（）。
+*
+A. Java访问修饰符按照访问范围由低到高的排列顺序是
+public，default，protected，private
+
+B. private可以用于外部类的声明
+C. 一个Java源文件中声明为public的外部类只能有一个
+D. protected声明的方法不可以被子类重写
+*正确答案：C*
+
+
+*3.
+
+运行下面程序:
+
+publicclass Foo {
+
+       public static void main(String[] args) {
+
+              StringBuffer a=new StringBuffer("A");
+
+              StringBuffer b=new StringBuffer("B");
+
+              /operator/(a,b);
+
+              System./out/.println(a+","+b);
+
+       }
+
+       public static void operator(StringBuffer x,StringBuffer y){
+
+              x.append(y);
+
+              y=x;
+
+       }
+
+}
+
+输出的结果是：（）。
+*
+A.  A,B
+B.  A,A
+C.  B,B
+D.  AB,B
+*正确答案：D*
+
+
+*4. 下列关于内存回收的说明正确的是：*
+A. 程序员必须创建一个线程来释放内存
+B. 内存回收程序负责释放无用内存
+C. 内存回收程序允许程序员直接释放内存
+D. 内存回收程序可以在指定的时间释放内存对象
+*正确答案：B*
+
+
+*5. 下列赋值语句中，正确的是（）。
+*
+A. byte b1 = 10, b2 = 20;byte b=b1+b2;
+B. byte b1 = 10, b2 = 20;byte b=~b1;
+C. byte b1 = 10, b2 = 20;byte b=b1>>1;
+D. byte b1 = 10; byte b=++b1;
+*正确答案：D*
+
+
+*6. 关于下列代码说法正确的是：
+class ClassA {
+ public int a;
+ protected ClassA(int a) {
+  this.a = a;
+ }
+}
+public class ExtendedA extends ClassA {
+ private ExtendedA(int a) {
+  super(a);
+ }
+ public static void main(String[] args) {
+  ExtendedA ext = new ExtendedA(420);
+  System.out.print(ext.a);
+ }
+}
+*
+A. 运行后，输出420
+B. 运行时抛出异常
+C. 编译错误，所有的构造器必须是public的   X
+D. 编译错误，构造器不能是private的        X
+*正确答案：A*
+
+
+*7.
+类A，B的定义如下：
+
+class A {  
+   private int a = 100;
+   A() {
+     System.out.print("A()");
+     System.out.println(a);
+   }
+}
+class B extends A {
+   private int a = 200;
+   B() {
+     System.out.print("B()");
+     System.out.println(a);
+   }
+
+}
+
+main(){
+	new B();      
+}
+
+运行下面的代码：
+
+输出的结果是：（）。
+*
+A. A() 100  B() 200
+B. A() 200  B() 200
+C. B() 200  A() 100
+D. B() 200  A() 200
+*正确答案：A*
+
+
+*8. 请看下列代码：
+public interface A {
+ String DEFAULT_GREETING = "Hello World";
+ public void method1();
+}
+现有接口B，是A接口的子接口，下列选择中B接口的声明正确的是：
+*
+A. public interface B extends A { }
+B. public interface B implements A {}
+C. public interface B instanceOf A {}
+D. public interface B inheritsFrom A { }
+*正确答案：A*
+
+
+*9.
+编译和运行以下代码的结果为（）。
+public class MyMain{
+
+  public static void main(String argv){
+
+    System.out.println("Hello cruel world");
+
+  }
+
+}
+
+*
+A.编译错误
+B.运行输出"Hello cruel world"
+C.编译无错，但运行时指示没有定义构造方法
+D.编译无错，但运行时指示没有正确定义main方法
+*正确答案：D*
+
+
+*10. 下列代码的输出结果是：
+public class Yikes {
+ public static void go(Long n) {
+  System.out.println("Long ");
+ }
+ public static void go(Short n) {
+  System.out.println("Short ");
+ }
+ public static void go(int n) {
+  System.out.println("int ");
+ }
+ public static void main(String[] args) {
+  short y = 6;
+  long z = 7;
+  go(y);
+  go(z);
+ }
+}
+*
+A. Long Long
+B. Short Long
+C. int Long
+D. int int
+*正确答案：C*
+
+
+*11. 下面关于final说法错误的是：（）
+*
+A. final修饰类时，该类不能被继承。
+B. final修饰方法时，该方法不能被重写。
+C. 当引用到使用static final 修饰的常量时，将采用编译期绑定的方式。
+D. 当使用final和abstract共同修饰一个类时，final应至于abstract之前。
+*正确答案：D*
+
+
+*12. 在Java中，Integer.MAX_VALUE表示：
+*
+A. double型最大值
+B. int最大值
+C. long型最大值
+D. char型最大值
+*正确答案：B*
+
+
+*13. 下列代码编译和运行的结果是：
+ public static void main(String[] args) {
+  Float pi = new Float(3.14f);
+  if (pi > 3) {
+   System.out.print("pi is bigger than 3. ");
+  } else {
+   System.out.print("pi is not bigger than 3. ");
+  }
+  finally {
+    System.out.println("Have a nice day.");
+   }
+ }
+*
+A. 编译失败
+B. 输出：pi is bigger than 3.
+C. 输出：pi is bigger than 3. Have a nice day
+D. 输出：pi is not bigger than 3. Have a nice day.
+*正确答案：A*
+
+
+*14.
+运行下面的语句:
+String s="";
+if(s==s+0){
+System./out/.println("Hello World");
+}
+
+编译，运行的结果是：（）。
+*
+A.Hello World
+B.无输出
+C.编译错误
+D.抛出运行时异常
+*正确答案：B*
+
+
+*15.
+
+仔细分析下列代码，请指出错误的行（）。
+
+public class SomeThing{
+
+       private String str;
+
+        public int addOne(final int x){
+
+            return ++x;
+
+      }
+
+    }
+*
+A.public class SomeThing
+B.private String str;
+C.public int addOne(final int x)
+D.return ++x;
+*正确答案：D*
+
+
+*16.
+程序的执行结果是（）。
+public class Test {
+
+    int x;
+
+    public static void main(String [] args){
+
+        Test t = new Test();
+
+        t.x=5;
+
+        change(t);
+
+        System.out.println(t.x);
+
+  }
+
+public static void change(Test t){
+
+        t.x=3;
+
+  }
+
+}
+
+
+
+*
+A. 5
+B. 3
+C. 0
+D. 4
+*正确答案：B*
+
+
+*17. 请看下列代码的输出结果是：
+public class Bootchy {
+ int bootch;
+ String snootch;
+ public Bootchy() {
+  this("snootchy");
+  System.out.print("first ");
+ }
+ public Bootchy(String snootch) {
+  this(420, "snootchy");
+  System.out.print("second ");
+ }
+ public Bootchy(int bootch, String snootch) {
+  this.bootch = bootch;
+  this.snootch = snootch;
+  System.out.print("third ");
+ }
+ public static void main(String[] args) {
+  Bootchy b = new Bootchy();
+  System.out.print(b.snootch + " " + b.bootch);
+ }
+}
+*
+A. first second third snootchy 420
+B. third second first snootchy 420
+C. third first second snootchy 420
+D. first second first third snootchy 420
+*正确答案：B*
+
+
+*18.
+下列程序的输出结果是（）。
+
+publicstatic void main(String[] args) {
+
+              String str="ABCDEF";
+
+              String sub=str.substring(3,5);
+
+              System./out/.println(sub);
+
+}
+
+
+*
+A.CD
+B.CDE
+C.DE
+D.DEF
+*正确答案：C*
+
+
+*19. 下面关于final说法正确的是：（）。
+*
+A.final修饰类时，该类能被继承。
+B.final修饰方法时，该方法能被重写。
+C.当使用static final 修饰的常量时，将采用编译期绑定的方式。
+D.当使用final和abstract共同修饰一个类时，final应至于abstract之前。
+*正确答案：C*
+
+
+*20.
+
+分析如下语句，说法错误的是（）。
+
+*
+A.break可用于跳出循环，当多层嵌套时，只用于跳出一层循环
+B.break即可以出现在循环语句中也可以出现在switch语句中
+C.continue可以用于跳出循环
+D.continue不能出现在switch语句中
+*正确答案：C*
+
+
+*21. 请看下列代码：
+class Payload {
+   private int weight;
+   public Payload(int wt) {
+     weight = wt;
+   }
+   public Payload() {}
+     public void setWeight(int w) {
+        weight = w;
+     }
+    public String toString() {
+      return Integer.toString(weight);
+    }
+}
+public class TestPayload {
+   static void changePayload(Payload p) {
+     <插入代码>
+   }
+   public static void main(String[] args) {
+      Payload p = new Payload();
+      p.setWeight(1024);
+      changePayload(p);
+      System.out.println("The value of p is " + p);
+   }
+}
+假设运行后输出“The value of p is 420”，那么<插入代码>处应填入代码是：
+*
+A. p.setWeight(420);
+B. Payload.setWeight(420);
+C. p = new Payload(420);
+D. p = new Payload();
+p.setWeight(420);
+*正确答案：A*
+
+
+*22.
+查看如下代码：
+
+
+1. class  HasStatic{
+
+2.    private  static  int  x=100；
+
+3.     public  static  void  main(String  args[  ]){
+
+4.         HasStatic  hs1=new  HasStatic(  );
+
+5.         hs1.x++;
+
+6.         HasStatic  hs2=new  HasStatic(  );
+
+7.         hs2.x++;
+
+8.         hs1=new  HasStatic( );
+
+9.         hs1.x++;
+
+10.       HasStatic.x--;
+
+11.       System.out.println(“x=”+x);
+
+12.   }
+
+13.}
+
+
+对于此代码，下列描述中，正确的是（）。
+
+
+*
+A. 5行不能通过编译，因为引用了私有静态变量
+B. 10行不能通过编译，因为x是私有静态变量
+C. 程序通过编译，输出结果为：x=103
+D. 程序通过编译，输出结果为：x=102
+*正确答案：D*
+
+
+*23. 下列数组声明语句中，错误的是：（）。
+*
+A.int[] arr = new int[8];
+B.int[] arr = new int[8]{};
+C.int[] arr = {};
+D.int[] arr = new int[]{};
+*正确答案：B*
+
+
+*24. 下列Java标识符，错误的是（）*
+A._sys_varl 
+B.$change 
+C.User_name 
+D.1_file
+*正确答案：D*
+
+
+*25. 下列代码的运行结果是：
+  String test = "Test A. Test B. Test C.";
+  String regex = "\\.\\s*";
+  String[] result = test.split(regex);
+   for (String s : result)
+      System.out.print(s + " ");
+*
+A. Test A Test B Test C
+B. Test A. Test B. Test C.
+C. Test . Test . Test .
+D. A.  B.  C.
+*正确答案：A*
+
+
+*26.
+
+请看下列代码：
+
+     publicstatic void main(String[] args) {
+
+        <插入代码>
+
+        System.out.println(s);
+
+    }
+
+  如果程序输出的结果是4247，那么在<插入代码>处应该填入代码是（）。
+
+*
+A.String s = "123456789";s = (s-"123").replace(1,3,"24") - "89";
+B.StringBuffer s = new StringBuffer("123456789");s.delete(0,3).replace( 1,3, "24").delete(4,6);
+C.StringBuffer s = new StringBuffer("123456789");s.substring(3,6).delete( 1 ,3).insert( 1, "24");
+D.StringBuilder s = new StringBuilder("123456789");s.substring(3,6).delete( 1 ,2).insert( 1, "24");
+*正确答案：B*
+
+
+*27. 数据类型int、char和double所占用内存字节数分别是：（）。
+*
+A. 4、2和8
+B. 2、2和4
+C. 2、1和8
+D. 4、4和4
+*正确答案：A*
+
+
+*28. 下列表达式中，可以得到精确结果的是（）。
+*
+A. double d1 = 3.0 - 2.6;
+B. double d4 = 2.5 * 1.5;
+C. double d2 = 30/300;
+D. double d3 = 1/2 + 0.5;
+*正确答案：B*
+
+
+*29. 下列代码的输出结果是：
+  String str1 = "WhatisJava";
+  String str2 = "WhatisJava";
+  System.out.print(str1.equals( str2));
+  System.out.print(",");
+  String str3 = new String("WhatisJava");
+  System.out.println(str1.equals(str3));
+*
+A. true,false
+B. false,false
+C. false,true
+D. true,true
+*正确答案：D*
+
+
+*30.
+
+程序执行的结果是（）。
+
+  public class Test {
+
+    String name="Tom";
+
+    public Test(String name){
+
+        name=name;
+
+    }
+
+    public static void main(String [] args){
+
+        Test t = new Test("Jack");
+
+        System.out.println(t.name);
+
+    }
+
+  }
+
+*
+A.null
+B.Tom
+C.Jack
+D." "
+
+*正确答案：B*
+
+
+*31. 下列逻辑表达式，值为false的是（）。
+*
+A. "abc,,,bcd,,def,efg,,".split("[,]+").length == 4;
+B. "1st456".matches("\\d[a-z&&[^et]]{2,8}[0-9]+");
+C. "abcdefghijklmnopqrstuvwxyz".substring(5,26).length() == 20;
+D. "whatisjava".equals(null);
+*正确答案：BCD*
+
+
+*32. 在Java语言中，下列说法正确的是：（）。
+*
+A. StringBuffer和StringBuilder的区别在于：StringBuffer是线程安全的而
+StringBuilder不是。
+B. String是不可变对象，而StringBuffer中封装的字符串数据是可以动态改变的。
+C. 判断两个StringBuilder对象的字符序列是否相同，可以调用其equlas方法进行
+比较。
+D. String的重写了equals方法，重写的逻辑是：字符序列相同的String对象
+equals方法返回true。
+*正确答案：ABD*
+
+
+*33. 在Java语言中，下列说法正确的是（）。
+*
+A. 一个接口可以继承多个接口
+B. 一个类可以继承多个类
+C. 一个类可以实现多个接口
+D. 一个类可以有多个子类
+*正确答案：ACD*
+
+
+*34. 请看下列代码：
+public class Key {
+    private long id1;
+    private long 1d2;
+    // class Key methods
+ }
+程序员开发Key类，作为java.util.HashMap的key，那么Key应该覆盖的两个方法是：
+*
+A. public int hashCode()
+B. public boolean equals(Key k)
+C. public int compareTo(Object o)
+D. public boolean equals(Object o)
+*正确答案：AD*
+
+
+*35. 下面的方法属于StringBuffer的是：（）。
+*
+A. size
+B. insert
+C. delete
+D. length
+*正确答案：BCD*
+
+
+*36.
+
+矩阵是指纵横排列的数据表格，最早来自于方程组的系数及常数所构成的方阵，如：
+
+        a11 a12... a1n            
+
+        a21 a22... a2n
+
+            ... ... ...
+
+        am1 am2... amn
+
+矩阵乘积规则示例如下：
+
+两个矩阵a和b可以相乘的条件是a矩阵的列数和b矩阵的行数相同，例如：
+
+假设矩阵a为“2行3列”：
+
+a11 a12 a13
+
+a21 a22 a23
+
+矩阵b为“3行2列”：
+
+b11 b12
+
+b21 b22
+
+b31 b32
+
+a和b可以相乘，乘积矩阵为：
+
+a11*b11+a12*b21+a13*b31    a11*b12+a12*b22+a13*b32
+
+a21*b11+a22*b21+a23*b31    a21*b12+a22*b22+a23*b32
+
+Matrix类的定义如下：
+
+public class Matrix {
+
+private double[][] data;
+
+private int rows;
+
+private int cols;
+
+public Matrix(int rows, int cols) {
+
+     if (rows <= 0 || cols <= 0)
+
+         throw new IllegalArgumentException("");
+
+     this.rows = rows;
+
+     this.cols = cols;
+
+     data = new double[rows][cols];
+
+}
+
+public Matrix(int rows, int cols, String line) {
+
+     if (rows <= 0 || cols <= 0 || line == null)
+
+         throw new IllegalArgumentException("");
+
+     String[] dataStr = line.split(",");
+
+     if (_  __空白处__1  _) {
+
+         throw new IllegalArgumentException("");
+
+     }
+
+     this.rows = rows;
+
+    this.cols = cols;
+
+     data = new double[rows][cols];
+
+     for (int i = 0; i < dataStr.length; i++) {
+
+         (_          __空白处__2          _)
+
+     }
+
+}
+
+    public Matrix mul(Matrix ma) {
+
+     if (_          __空白处__3          _) {
+
+         throw new IllegalArgumentException();
+
+     }
+
+     Matrix mc = new Matrix(rows, ma.cols);
+
+     for (int i = 0; i < mc.getRows(); i++) {
+
+         for (int j = 0; j < mc.getCols(); j++) {
+
+             for (_          __空白处__4          _) {
+
+                 _          __空白处__5          _
+
+             }
+
+         }
+
+     }
+
+     return mc;
+
+}
+
+public int getRows() {
+
+     return rows;
+
+}
+
+public int getCols() {
+
+     return cols;
+
+}
+
+public String toString() {
+
+     StringBuilder sb = new StringBuilder();
+
+     for (int i = 0; i < rows; i++) {
+
+         for (int j = 0; j < cols - 1; j++) {
+
+             sb.append(data[i][j]).append(",");
+
+         }
+
+         sb.append(data[i][cols - 1]).append("\n");
+
+     }
+
+     return sb.toString();
+
+}
+
+}
+
+
+*
+*(1). 空白处1（）*
+A. dataStr.length != (rows-1) * (cols-1)
+B. dataStr.length != (rows-1) * cols
+C. dataStr.length != rows * cols
+D. dataStr.length != rows * (cols-1)
+*正确答案：C*
+
+*(2). 空白处2（）*
+A. data[i % cols][i / cols] = Double.parseDouble(dataStr[i]);
+B. data[i/cols][i % cols] = Double.parseDouble(dataStr[i]);
+C. data[i/ rows][i % rows] = Double.parseDouble(dataStr[i]);
+D. data[i % rows][i /rows] = Double.parseDouble(dataStr[i]);
+*正确答案：B*
+
+*(3). 空白处3（）*
+A. cols != ma.cols
+B. rows != ma.cols
+C. rows != ma.rows
+D. cols != ma.rows
+*正确答案：D*
+
+*(4). 空白处4（）*
+A. int k = 0; k < cols; k++
+B. int k = 0; k <ma.cols; k++
+C. int k = 0; k <rows; k++
+D. int k = 0; k <rows * ma.cols; k++
+*正确答案：A*
+
+*(5). 空白处5（）*
+A. mc.data[i][j] += data[k][j] * ma.data[i][k];
+B. mc.data[i][j] += data[k][i] * ma.data[j][k];
+C. mc.data[i][j] += data[j][k] * ma.data[k][i];
+D. mc.data[i][j] += data[i][k] * ma.data[k][j];
+*正确答案：D*
+
+
+*37.
+
+ 下面的程序用于随机输出5个不同的字母
+
+public static void main(String[] args) {
+
+     char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+
+             'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+
+             'W', 'X', 'Y', 'Z' };
+
+     int len = letters.length;
+
+     char[] chs = new char[5];
+
+     _         __ __空白处1          _
+
+     Random rd = new Random();
+
+     for (int i = 0; i < chs.length; i++) {
+
+         int index;
+
+         do {
+
+             _          __空白处2__         _
+
+         } while (_          __空白处3__          _);
+
+         _          __空白处4__          _
+
+         _          __空白处5__          _
+
+     }
+
+     System.out.println(Arrays.toString(chs));
+
+    }*
+*(1).
+
+下列选项中，能填入空白处1的代码是(    )
+
+*
+A.boolean[] flags = new boolean[len];
+B.boolean[] flags = new boolean[]{};
+C.boolean[] flags = new boolean[5];
+D.boolean[] flags = new boolean[];
+
+*正确答案：A*
+
+
+*(2).
+
+下列选项中，能填入空白处2的代码是(    )
+
+*
+A.index = rd.nextInt();
+B.index = rd.nextInt(5);
+C.index = rd.nextInt(len + 1);
+D.index = rd.nextInt(len);
+
+*正确答案：D*
+
+
+*(3).
+
+下列选项中，能填入空白处3的代码是(    )
+
+*
+A.!flags[index]
+B.!flags[i]
+C.flags[index]
+D.flags[i]
+
+*正确答案：C*
+
+
+*(4).
+
+下列选项中，能填入空白处4的代码是(    )
+
+*
+A.chs[i] = letters[index];
+B.chs[i] = letters[i];
+C.chs[index] = letters[i];
+D. chs[index] = letters[index];
+*正确答案：A*
+
+
+*(5).
+
+下列选项中，能填入空白处5的代码是(    )
+
+*
+A.flags[i] = true;
+B.flags[i] = false;
+C.flags[index] = true;
+D.flags[index] = false;
+*正确答案：C*
+
+
+*38.
+
+ScoreManager类实现了成绩管理系统。该系统有如下功能供选则：录入成绩，成绩
+列表，查询成绩，退出。当用户在控制台输入1，用户选择的功能为录入成绩；输
+入2，用户选择的功能为成绩列表；输入3，用户选择的功能为根据姓名查找成绩；
+输入4，退出。
+
+ScoreManager类代码如下：
+
+publicclass ScoreManager {
+
+    public static void main(String[] args) {
+
+        int numOfStudents = 10;
+
+//学生名字信息数组
+
+        String[] students = NameUtils.randomNames(numOfStudents);
+
+        int[] scores = new int[numOfStudents];//学生成绩数组
+
+          //使用Scanner接收控制台的输入信息
+
+_           __空白处__1          _
+
+        System.out.println("**********欢迎进入成绩管理系统**********");
+
+        while (true) {
+
+            System.out.println("
+
+请选择功能：1——成绩录入，2——成绩列表，3——成绩查询，4——退出");
+
+            String c = scanner.next().trim();
+
+            if ("1".equals(c)) {
+
+                System.out.println("开始录入成绩：");
+
+                for (int i = 0; i < students.length; i++) {
+
+                    System.out.print((i + 1) + ". 学生姓名：" + students[i]
+
+                            + ", 成绩：?");
+
+                       //从控制台接收到学生成绩
+
+_           __空白处__2          _
+
+                }
+
+                System.out.println("录入完毕。");
+
+            } else if ("2".equals(c)) {
+
+                int avg = 0;
+
+                for (int i = 0; i < scores.length; i++) {
+
+                    avg += scores[i];
+
+                }
+
+                  //计算学生的评价成绩
+
+                _           __空白处__3          _
+
+                System.out.println(StringUtils.rightPad("编号", 20, " ")
+
+                        + StringUtils.rightPad("姓名", 20, " ")
+
+                        + StringUtils.rightPad("成绩", 20, " "));
+
+                System.out.println(StringUtils.repeat("-", 30));
+
+                for (int i = 0; i < students.length; i++) {
+
+                    System.out.println(StringUtils
+
+                            .rightPad(i + 1 + "", 10, " ")
+
+                            + StringUtils.rightPad(students[i], 10, " ")
+
+                            + StringUtils.rightPad(scores[i] + "", 10, "
+"));
+
+                }
+
+                System.out.println(StringUtils.repeat("-", 30));
+
+                System.out.println("平均成绩: " + avg);
+
+            } else if ("3".equals(c)) {
+
+                System.out.print("请输入您要查询的学生姓名：");
+
+                String student = scanner.next().trim();
+
+                int i = 0;
+
+                for (; i < students.length; i++) {
+
+                      //如果查找到某个学生的信息，退出当前循环
+
+                       _           __空白处__4          _
+
+                }
+
+                if (_           __空白处__5          _) {
+
+                    System.out.println((i + 1) + ". 学生姓名：" +
+students[i]
+
+                            + ", 成绩：" + scores[i]);
+
+                } else {
+
+                    System.out.println("对不起，找不到学员的信息。");
+
+                }
+
+            } else if ("4".equals(c)) {
+
+                System.out.println("**********谢谢使用**********");
+
+                break;
+
+            }
+
+        }
+
+        scanner.close();
+
+    }
+
+}
+
+
+ 
+
+*
+*(1). 下列选项中，能填入空白处1的代码是(    )*
+A.Scanner scanner = new Scanner(System.out);
+
+B.Scanner scanner = new Scanner(System.in);
+
+C.Scanner scanner = new Scanner(new FileInputStream(System.in));
+
+D.Scanner scanner = new Scanner(new FileOutputStream(System.out));
+
+*正确答案：B*
+
+
+*(2). 下列选项中，能填入空白处2的代码是(    )*
+A.scores[i] = scanner.nextInt();
+
+B.scores[i] = scanner.next();
+
+C.scores[i] = scanner.nextDouble();
+
+D.scores[i] = scanner.nextString();
+
+*正确答案：A*
+
+
+*(3). 下列选项中，能填入空白处3的代码是(    )*
+A.avg *= scores.length;
+
+B.avg /= scores.length;
+
+C.avg *= scores.length-1;
+
+D.avg /= scores.length-1;
+
+*正确答案：B*
+
+
+*(4). 下列选项中，能填入空白处4的代码是(    )*
+A.
+if(student.equalsIgnoreCase(students[i-1])) {
+
+    break;
+
+}
+
+B.
+if(student.equalsIgnoreCase(students[i])) {
+
+    continue;
+
+}
+
+C.
+if(student.equalsIgnoreCase(students[i-1])) {
+
+    continue;
+
+}
+D.
+
+if(student.equalsIgnoreCase(students[i])) {
+
+    break;
+
+}
+
+*正确答案：D*
+
+
+*(5). 下列选项中，能填入空白处5的代码是(    )*
+A.scores.length < scores.length-1
+
+B.scores.length < scores.length
+
+C.i < students.length
+
+D.i < students.length-1
+
+*正确答案：C*
+

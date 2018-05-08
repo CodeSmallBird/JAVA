@@ -1,0 +1,9 @@
+body{ margin: 5; font-size:8px; width:280px;}
+
+.line{ border-style: dashed solid dashed dashed; width:100%;}
+.please{ font-size:22px; }
+.me{ padding-left:56px; }
+.doorName{ font-size:10px; }
+.account{ padding-left:60px; }
+.note{ padding-top:5px;padding-bottom:5px; }
+.qrimg{ padding-left:60px; }

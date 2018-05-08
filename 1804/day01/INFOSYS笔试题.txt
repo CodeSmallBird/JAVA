@@ -1,0 +1,208 @@
+1.以下属于面向对象的特征的是（）
+A.重载
+B.重写
+C.封装
+D.继承
+
+2.以下对封装的描述正确的是（）
+A.只能对一个类中的方法进行封装，不能对属性进行封装
+B.如果子类继承了父类，对于父类中进行封装的方法，子类仍然可以直接调用
+C.封装的意义不大，因此在编码时尽量不要使用
+D.封装的主要主用在于对外隐藏内部实现细节，增强程序的安全性
+
+3.以下对继承的描述错误的是（）
+A.java中的继承允许一个子类继承多个父类
+B.父类更具有通用性，子类更具体
+C.java中的继承存在着传递性
+D.当实例化子类时会递归调用父类中的构造方法
+
+4.以下关于final关键字的说法错误的是（）
+A.final是java中的修饰符，可以修饰类，接口，抽象类，方法和属性
+B.final修饰的类肯定不能被继承
+C.final修饰的方法不能被重载
+D.final修饰的变量不允许被再次赋值
+
+5.访问修饰符作用范围由大到小是（）
+A.private-default-protected-public
+B.public-default-protected-private
+C.private-protected-default-public
+D.public-protected-default-private
+
+6.多态的表现形式（）
+A.重写
+B.抽象
+C.继承
+D.封装
+
+7.下面关于java.lang.Exception类的说法正确的是（）
+A.继承自Throwable
+B.Serialable
+C.不记得，反正不正确
+
+8.下面程序的运行结果是
+String str1="hello";
+String str2="he"+new String("llo");
+System.out.println(str1==str2);
+
+9.下列说法正确的是（）
+A.class中的constructor不可省略
+B.constructor必须与class同名，但方法不能与class同名
+C.constructor在一个对象被new时执行
+D.一个class只能定义一个constructor
+
+10.下列说法正确的是（）
+A.LinkedList继承自List
+B.AbstractSet继承自Set
+C.HashSet继承自AbstractSet
+D.WeakMap继承自HashMap
+
+11.0.6332的数据类型是（）
+A.float
+B.double
+C.Float
+D.Double
+
+12.java接口的修饰符可以为（）
+A.private
+B.protected
+C.final
+D.abstract
+
+13.下面程序的运行结果是（）
+class HelloA {
+	public HelloA() {
+		System.out.println("HelloA");
+	}
+
+	{
+		System.out.println("I am A class");
+	}
+	static {
+		System.out.println("static A");
+	}
+}
+
+public class HelloB extends HelloA {
+	public HelloB() {
+		System.out.println("HelloB");
+	}
+
+	{
+		System.out.println("I am B class");
+	}
+	static {
+		System.out.println("static B");
+	}
+
+	public static void main(String[] args) {
+		new HelloB();
+	}
+}
+
+14.getCustomerInfo()方法如下，try中可以捕获三种类型的异常，如果在该方法运行中产生了一个IOException，将会输出什么结果（）
+public void getCustomerInfo(){
+		try{
+			//do something that may cause an Exception
+		}catch(java.io.FileNotFoundException ex){
+			System.out.println("FileNotFoundException!");
+		}catch(java.io.IOException ex){
+			System.out.println("IOException!");
+		}catch(java.lang.Exception ex){
+			System.out.println("Exception!");
+		}
+	}
+A.IOException!
+B.IOException!Exception!
+C.FileNotFoundException!IOException!
+D.FileNotFoundException!IOException!Exception!
+
+15.下面代码的运行结果为（）
+import java.io.*;
+import java.util.*;
+public class foo{
+	public static void main(String[] args){
+		String s;
+		System.out.println("s="+s);
+	}
+}
+A.代码得到编译，并输出"s="
+B.代码得到编译，并输出"s=null"
+C.由于String s没有初始化，代码不能编译通过
+D.代码得到编译，但捕获到NullPointException
+
+16.System.out.println("5"+2);的输出结果是（）
+A.52
+B.7
+C.2
+D.5
+
+17.指出下列程序运行的结果（）
+public class Example {
+	String str=new String("good");
+	char[] ch={'a','b','c'};
+	public static void main(String args[]) {
+		Example ex =new Example();
+		ex.change(ex.str,ex.ch);
+		System.out.println(ex.str+"and");
+		System.out.println(ex.ch);
+	}
+	public void change(String str,char ch[]){
+		str="test ok";
+		ch[0]='g';
+	}
+}
+A.good and abc
+B.good and gbc
+C.test ok and abc
+D.test ok and gbc
+
+18.下列那种异常是检查型异常，需要在编写程序时声明（）
+A.NullPointException
+B.ClassCaseException
+C.FileNotFoundException
+D.IndexOutOfBoundsException
+
+19.下面的方法，当输入为2的时候返回值是多少（）
+public static int getValue(int i){
+	int result=0;
+	switch(i){
+	case 1:	
+	  result=result+i;
+	case 2:	
+	  result=result+i*2;
+	case 3:	
+	  result=result+i*3;		
+	}
+	return result;
+}
+A.0
+B.2
+C.4
+D.10
+
+20.下面是People和Child类的定义和构造方法，每个构造方法都输出编号，在执行new Child("mike")的时候都有哪些构造方法被顺序调用？请选择输出结果（）
+class People{
+	String name;
+	public People(){
+		System.out.print(1);
+	}
+	public People(String name){
+		System.out.print(2);
+		this.name=name;
+	}
+}
+class Child extends People{
+	People father;
+	public Child(){
+		System.out.print(4);
+	}
+	public Child(String name){
+		System.out.print(3);
+		this.name=name;
+		father=new People(name+":F");
+	}
+}
+A.312
+B.32
+C.432
+D.132

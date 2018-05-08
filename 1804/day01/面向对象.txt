@@ -1,0 +1,512 @@
+1.程序执行的结果是：（）。
+public class Point{
+ int y = 7;
+ public void step(int y) {
+    y += y;
+   System.out.println(y);
+ }
+ public static void main(String[] args) {
+   Point p = new Point();
+   p.step(10);
+ }
+}
+  A. 14
+
+ B.20
+
+ C.10
+
+ D.17
+
+
+2.程序的执行结果是:（）。
+public class Question {
+    private int  num;
+    public static void main(String [] args){
+        Question q = new Question();
+        q.num=13;
+        update(q);
+        System.out.println(q.num);
+    }
+   public static void update(Question q){
+        q.num=9;
+    }
+}
+  A.13
+
+ B.9
+
+ C.0
+
+ D.4
+
+
+  3.程序执行的结果是：（）。
+public class Answer {
+ public static void main(String[] args) {
+    int score = 20;
+   Answer  ans= new Answer();
+   ans.add(score);
+   System.out.println(" main： score = " + score);
+ }
+ void  add(int score) {
+   System.out.println("add： score=" + score++);
+ }
+}
+ A. add： score=21
+ main： score = 21
+
+ B. add： score=20
+ main： score = 21
+
+ C. add： score=21
+ main： score = 20
+
+ D. add： score=20
+ main： score = 20
+
+
+4.下列代码编译或运行的结果是：（）。
+public class  Snow{
+ public String  jump(int x, int y) {
+    return "jump one";
+ }
+ public String jump(int[] vals) {
+    return "jump two";
+ }
+ public static void main(String[] args) {
+    Snow s=new Snow();
+    System.out.println(s.jump(4, 5));
+ }
+}
+ A. public String jump(int[] vals) {行，编译出错
+
+ B. System.out.println(s.jump(4, 5));行，抛出运行时异常
+
+ C.输出：jump one
+
+ D.输出：jump two
+
+
+  5.关于下列代码说法正确的是：（）。
+public class  Storm {
+ public void  find() {
+ }
+ public String find() {
+  return "find";
+ }
+ public double find(int x) {
+  return 2.0;
+ }
+}
+  A.无编译错误
+
+ B.代码 public String find() { 行，出现编译错误
+
+ C.代码 public double find(int x) {行，出现编译错误
+
+ D.代码 return "find";行处出现编译错误
+
+
+6.关于下列代码说法正确的是：（）。
+public class Cell {
+ private int id;
+ public Cell(int id) {
+  this.id = id;
+ }
+ public void updateId(int id) {
+  this.id = id;
+ }
+ public static void main(String[] args) {
+  Cell cell = new Cell(1001);
+  cell.updateId(1002);
+  System.out.println(cell.id);
+ }
+}
+ A.编译错误
+
+ B.运行时抛出异常
+
+ C.运行后，cell引用的对象属性id值没有改变，仍然是1001
+
+ D.运行后，cell引用的对象属性id值改变成新的值1002
+
+
+  7.关于下列代码说法正确的是：（）。
+public class Foo {
+ public int add(int a, int b) {
+  return a + b;
+ }
+ public static void main(String[] args) {
+   Foo foo = null;
+   System.out.println(foo.add(10, 20));
+ }
+}
+ A. 编译错误
+
+ B. 正常运行，但无结果输出
+
+ C. 运行输出：30
+
+ D. 运行时抛出NullPointerException异常
+
+
+  8.有一个名为Product的类，下列方法中属于该类的构造方法的是：（）。
+ A.public Product(){}
+
+ B.public Product(String name){}
+
+ C.public void Product(){}
+
+ D.public void Product(String name){}
+
+
+9.请看下列代码编译和运行的结果是：（）。
+public class Teacher {
+ private String name="sun";
+ public static void main(String[] args) {
+  Teacher[] teachers=new Teacher[2];
+  System.out.println(teachers[0].name);
+  System.out.println(teachers.length);
+ }
+}
+ A.sun  2
+
+ B.null  2
+
+ C.null   1
+
+ D.运行时抛出NullPointerException异常
+
+
+10.请看下列代码编译和运行的结果是：（）。
+class Foo {
+ int value;
+ public void f() {
+ }
+}
+class Goo extends Foo {
+ int num;
+ public Goo(int value, int num) {
+  this.value = value;
+  this.num = num;
+ }
+ public void g() {
+ }
+}
+public class TestFoo {
+ public static void main(String[] args) {
+  Foo obj = new Goo(100, 3);
+  obj.value = 200;
+  obj.f();
+  obj.num = 5;
+  obj.g();
+ }
+}
+ A.输出：f value:100
+            g num:3
+
+ B.输出：f value:200
+            g num:5
+
+ C.输出：f value:200
+            g num:0
+
+ D.编译错误
+
+
+  11.下列代码编译和运行的结果是：（）。
+class Person {
+ String name = " ";
+
+ public Person(String name) {
+  this.name = name;
+ }
+}
+
+class Employee extends Person {
+ String empNO = "0000";
+
+ public Employee(String empNO) {
+  this.empNO = empNO;
+ }
+}
+
+public class EmployeeTest {
+ public static void main(String[] args) {
+  Employee e = new Employee("1109");
+  System.out.println(e.empNO);
+ }
+}
+ A.输出：0000
+
+ B.输出：1109
+
+ C.代码public Employee(String empNO) {行，出现编译错误
+
+ D.抛出运行时异常
+
+
+  12.请看下列代码，程序的输出结果是：（）。
+class One {
+ public One() {
+  System.out.print(1);
+ }
+}
+class Two extends One {
+ public Two() {
+  System.out.print(2);
+ }
+}
+class Three extends Two {
+ public Three() {
+  System.out.print(3);
+ }
+}
+public class Numbers {
+ public static void main(String[] argv) {
+  new Three();
+ }
+}
+  A.1
+
+ B.3
+
+ C.123
+
+ D.321
+
+
+  13.请看下列代码：
+public class Tetromino {
+ protected int move(int x) {
+  return 0;
+ }
+}
+class T extends Tetromino {
+ <插入代码>
+}
+在<插入代码>处填入选项中的代码，使T类没有编译错误的是：（）。
+ A.public int move(int x) { return 0; }
+
+ B.private int move(int x) { return 0; }
+
+ C.private int move(long x) { return 0; }
+
+ D.protected long move(int x) { return 0; }
+
+
+  14.下列代码编译和运行的结果是：（）。
+ class A {
+ public void start() {
+  System.out.println("A Start");
+ }
+}
+public class B extends A {
+ public void start() {
+  System.out.println("B Start");
+ }
+ public static void main(String[] args) {
+  ((A) new B()).start();
+ }
+}
+ A.输出：A Start
+
+ B.输出：B Start
+
+ C.输出：A Start  
+         B Start
+
+ D.编译错误
+
+
+  15.下列关于JVM的内存结构描述正确的是：（）。
+ A.类的各种信息在堆中保存
+
+ B.栈用于存放程序运行过程当中所有的局部变量
+
+ C.堆一般用于存储使用new关键字创建的对象
+
+ D.类是JVM的内存结构
+
+
+  16.关于下列代码说法正确的是：（）。
+public interface A {
+ public void doSomething(String thing);
+}
+interface B {
+}
+interface C extends A, B {
+}
+interface D {
+ public void doIt(String thing);
+}
+class AImpl implements C ,D{
+ public void doSomething(String msg) {}
+ public void doIt(String thing) {}
+}
+
+ A. 所有类和接口都编译成功
+
+ B.接口A编译失败
+
+ C.类AImpl编译失败
+
+ D.接口C编译失败
+
+
+  17.请看下列代码：
+public class Foo {
+  static void alpha() { /* more code here */}
+  void beta() { /* more code here */}
+}
+下列说法正确的是：（）。
+ A.Foo.beta()是调用beta方法的正确方式
+
+ B.Foo.alpha()是调用alpha方法的正确方式
+
+ C.beta方法可以直接调用alpha方法
+
+ D.alpha方法可以直接调用beta方法
+
+
+  18.下面程序定义了一个类，关于该类说法正确的是:（）。
+abstract class Tetromino{ … }
+  A.可以使用new Tetromino()；来实例化一个Tetromino类的对象
+
+ B.该类不能被继承
+
+ C.该类的方法都不能被重载
+
+ D.该类的方法可以在子类中重写
+
+
+  19.在 Java 中，关于 final 关键字的说法正确的是:（）。
+ A.如果修饰局部变量，必须定义时初始化
+
+ B.如果修饰类，则该类只能被一个子类继承
+
+ C.如果修饰方法，则该方法不能在子类中被覆盖
+
+ D.如果修饰方法，则该方法所在的类不能被继承
+
+
+  20.关于下列代码说法正确的是：（）。
+public class Cell {
+ private final int id;
+ public Cell(int id) {
+  this.id = id;
+ }
+ public void updateId(int id) {
+  this.id = id;
+ }
+ public static void main(String[] args) {
+  Cell cell = new Cell(1001);
+  cell.updateId(1002);
+  System.out.println(cell.id);
+ }
+}
+ A.编译错误
+
+ B.运行时异常抛出
+
+ C.运行后，cell对象属性id的值没有改变，仍然是1001
+
+ D.运行后，cell对象属性id的值改变成新的值1002
+
+
+21.下列选项中，不属于Java 的访问控制修饰符的是：（）。
+  A.private  
+
+ B.protected  
+
+ C.friendly  
+
+ D.public 
+
+
+22.下面关于import, class和package的声明顺序正确的是:（）。
+ A.package, import, class
+
+ B.class, import, package
+
+ C.import, package, class
+
+ D.package, class, import
+
+
+  23.请看下列代码：
+class ClassA {}
+class ClassB extends ClassA {}
+class ClassC extends ClassA {}
+public class Test{
+ public static void main(String[] args) {
+  ClassA p0 = new ClassA();
+  ClassB p1 = new ClassB();
+  ClassC p2 = new ClassC();
+  ClassA p3 = new ClassB();
+  ClassA p4 = new ClassC();
+  <插入代码>
+ }
+}
+下列选项中放置在<插入代码>处，使程序编译正确的是：（）。
+ A.p0 = p1;
+
+ B.p1 =p2;
+
+ C.p2 = p4;
+
+ D.p2 = (ClassC)p1;
+
+
+  24.请看下列代码：
+public class Line {
+    private Point p;
+    public Line() {
+        <插入代码>
+    }
+ public class Point { }
+}
+在<插入代码>处，需要创建Point类的对象，下列选项正确的是：（）。
+ A.super.p = new  Point();
+
+ B.p = super.new Point();
+
+ C.p =new Point();
+
+ D.p =this.new Point();
+
+
+25.下列代码的运行结果是：（）。
+public class Animal {
+ public String noise() {
+  return "Animal";
+ }
+ public static void main(String[] args) {
+  Cat cat = null;
+  Animal animal = new Dog();
+  if (animal instanceof Cat) {
+   cat = (Cat) animal;
+   System.out.println(cat.noise());
+  } else {
+   System.out.println("animal is not Cat's instance");
+  }
+ }
+}
+class Dog extends Animal {
+ public String noise() {
+  return "Dog";
+ }
+}
+class Cat extends Animal {
+ public String noise() {
+  return "Cat";
+ }
+}
+ A.Animal
+
+ B.Dog
+
+ C.Cat
+
+ D.animal is not Cat's instance

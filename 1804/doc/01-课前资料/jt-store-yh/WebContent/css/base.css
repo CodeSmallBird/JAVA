@@ -1,0 +1,23 @@
+body{
+	font-size:8px;
+	width:280px;
+}
+
+.please{
+	font-size:24px;	
+}
+.me{
+	padding-left:100px;
+}
+.note{
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.line{
+	border:dashed 1px;
+	margin-top:3px;
+	margin-bottom:3px;
+}
+.qrimg{
+	padding-left:50px;
+}
