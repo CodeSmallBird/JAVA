@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+body{
+	font-size:8px;
+	width:280px; 
+}
+.please{ font-size:28px; }
+.me{ padding-left:100px; }
+.line{ border:dashed 1px;}
+.note{ padding-top:15px; padding-bottom:10px; }
+.qrimg{ padding-left:60px; }
