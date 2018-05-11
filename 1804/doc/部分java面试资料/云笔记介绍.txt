@@ -1,0 +1,139 @@
+1.云笔记（简介）
+ 笔记管理系统
+ 通过云笔记解决学生笔记信息量膨胀的问题，
+ 可以有针对性的提供用户其他人分享的笔记资源扩充自己的知识，
+ 并且在分享之外通过每个人的权限管理实现非分享笔记的安全私有化，
+ 保证学员的私人空间
+ 主要模块6个包含：笔记本管理,笔记管理,收藏和分享,
+   回收站管理,用户登录退出,活动管理等
+   
+   该系统采用B/S主流开发架构，使用MVC分层设计Spring+MyBatis整合的框架
+。控制层：Spring IOC核心控制组件 模型层：MyBatis负责业务数据实现和利用
+Spring框架降低组件间的耦合度，增加后期程序的拓展性与维护性；表现层：用
+HTML+JQuery+Ajax表现页面，提高响应速度，无页面刷新以及异步实现。
+
+2.采用技术架构（该系统采用B/S主流开发架构）
+ Spring : SpringMVC,SpringIOC,SpringAOP
+ MyBatis: 数据库操作
+ Ajax : Asynchronus JavaScript and JSON
+        异步请求和响应处理
+      --以XMLHttpRequest对象为核心
+      --以XML或JSON作为数据交互格式
+      --以JavaScript语言为基础
+      --以HTML/CSS技术作为数据渲染
+ jQuery:客户端js框架
+   封装了:选择器,属性函数,文档处理函数,
+        事件函数,隐藏和显示函数,Ajax函数
+
+ (HTML)--jQuery/Ajax-->Spring+MyBatis
+ 所有请求都采用Ajax方式交互
+
+ ajax请求
+-->DispatcherServlet
+-->HandlerMapping
+-->Controller
+  =Service
+  =Dao-->数据库操作
+-->调用jackson开发包
+(使用:在Controller方法前加@ResponseBody)
+(作用:将Controller返回结果转成json字符串输出)
+
+===========系统登录==============
+功能描述:用户输入用户名和密码后,
+点击"登录"按钮,发出Ajax请求,
+进入服务器端的检测,服务器返回JSON结果,
+Ajax回调函数解析JSON结果,错误提示错误信息
+成功进入edit.html界面
+
+1.客户端实现（HTML页面,js,ajax）
+  a.获取请求参数，发送Ajax
+   获取用户名和密码,发送Ajax
+  b.Ajax回调函数
+   有错误显示错误信息
+   没有错误跳转到edit.html
+2.服务器端实现（Spring+MyBatis）
+ /user/login.do
+-->DispatcherServlet
+-->HandlerMapping
+-->LoginController
+-->UserService
+-->UserDao-->cn_user（用户表）
+-->返回JSON结果
+
+
+==========笔记本列表加载===========
+1.客户端
+ a.发送请求
+ 页面一出来就发送ajax请求
+ 提交数据:用户ID
+
+ b.回调处理
+ 解析返回的NoteResult，将笔记信息解析
+ 在页面生成笔记本列表
+
+2.服务器端
+/notebook/loadbooks.do
+-->DispatcherServlet
+-->hanldermapping
+-->LoadBooksController
+-->BookService
+-->NoteBookDao-->cn_notebook(查询)
+-->返回NoteResult结构的json
+
+=========查看笔记列表=============
+1.客户端
+ a.发送请求
+  用户单击"笔记本"li时,发送ajax
+  提交数据:笔记本ID
+ b.回调处理
+  解析返回的NoteResult，将笔记信息解析
+  生成笔记列表元素
+
+2.服务器处理
+ /notebook/loadnotes.do?bookId=xx
+-->DispatcherServlet
+-->HanlderMapping
+-->LoadNotesController
+-->BookService.loadBookNotes
+-->NoteDao.findByBookId
+-->cn_note(查询)
+-->返回NoteResult结构的json
+
+select * from cn_note
+where cn_notebook_id=?
+
+ a.实现NoteDao
+  --编写Note实体类
+  --编写NoteMapper.xml文件(SQL语句)
+  --编写NoteDao接口
+
+
+
+js动态绑定:给现有或未来加入页面的元素绑定处理
+$("父元素选择器").on(
+ 事件类型,子元素选择器,fn函数);
+
+从父元素中寻找和“选择器”匹配
+的子元素,绑定fn处理
+
+==========加载笔记内容============
+1.客户端
+ a.发送请求
+ 点击"笔记"li元素时,发送ajax请求
+ 提交数据:笔记ID
+ b.回调处理
+ 解析NoteResult数据,将data中数据解析
+ 显示到标题和内容区
+
+2.服务器端
+ /note/load.do?noteId=xxx
+-->DispatcherServlet
+-->handlermapping
+-->LoadNoteController.execute
+-->NoteService.loadnote
+-->NoteDao.findById
+-->cn_note(查询)
+-->返回NoteResult结构的json
+
+select * from cn_note
+where cn_note_id=?
