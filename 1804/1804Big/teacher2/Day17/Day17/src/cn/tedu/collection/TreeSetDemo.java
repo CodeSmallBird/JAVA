@@ -1,4 +1,4 @@
-package cn.tedu.collection;
+﻿package cn.tedu.collection;
 
 import java.util.Comparator;
 import java.util.TreeSet;
@@ -40,7 +40,7 @@ public class TreeSetDemo {
 			// 如果返回正数，则意味着o1>o2,那么o1就会排在o2的后边
 			// 如果返回负数，则意味着o1<o2,那么o1就会排在o2的前边
 			public int compare(Student o1, Student o2) {
-				return o1.getName().charAt(0) - o2.getName().charAt(0);
+				return o1.getName().charAt(0)>= o2.getName().charAt(0)? -1 : 1;
 			}
 		});
 
@@ -93,7 +93,7 @@ class Student implements Comparable<Student> {
 	// 如果返回一个正数，则意味着当前对象会比较大，那么排序的时候会排在参数对象后边
 	// 如果返回一个负数，则意味着当前对象会比较小，那么排序的时候回排在参数对象前边
 	public int compareTo(Student o) {
-		return o.getScore() - this.getScore();
+		return o.getScore()>=this.getScore()?-1 : 1;
 	}
 
 }
