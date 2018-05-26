@@ -1,0 +1,4 @@
+-- listing properties --
+性别=女
+姓名=殷素素
+年龄=35
