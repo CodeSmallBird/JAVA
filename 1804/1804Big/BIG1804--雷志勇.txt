@@ -1,0 +1,209 @@
+一选这题
+1） E
+2） A	//AE
+3） E	//
+4） C	//ABCD
+5） A
+6) C	//D
+7) D
+8) C D 
+9) A B D
+10) A B C D 
+11) A B C D
+
+12) A B
+13) A
+14) A B		//ABCD
+15) E
+16) C D E
+17) A
+18) D E
+19) A
+20) B C E
+
+
+二 编程题：
+1）
+public class Queue<E>{
+	private int size;
+	Node first;
+	Node last;
+
+
+	class Node{
+		Node prev;
+		Node next;
+		E item;
+        	public Node(E item, Node prev, Node next){
+			this.item = item;
+			this.prev = prev;
+			this.next = next
+		}
+	}
+
+	
+	public void add(E item){
+		if(item == null)
+	 		throw 空指针异常;
+		Node node = new Node(item,null,null);
+		if(size == 0){
+			
+			this.first = node;
+			this.last = node;
+		}else{
+			this.last.next = node;
+			node.prev = this.last;
+			this.last = node;
+		}
+		size++;
+
+	}
+
+	public E peek(){
+		if(size == 0)
+			return null;
+		return this.first.item;
+
+	}
+
+	public E pop(){
+		if(size == 0)
+			return null;
+		E item ;
+		if(size == 1){
+			item = this.first.item;
+			this.first = null;
+			this.last = null;
+			
+		}else{
+			item = this.first.item;
+			Node node= this.first.next;
+			this.first = node;
+			node.prev = null;
+		}
+		size--;
+		return item;
+	}
+
+	public Queue<E> reverse(){
+		if(size == 0 )	
+			return null;
+		if(size == 1)
+			return this;
+		else{
+			Queue<E> queue = this;
+			Node nodeFirst = queue.first;
+			Node nodeLast = queue.last;
+			queue.first = nodeLast;
+			queue.last = nodeFirst;
+			nodeFirst.prev = nodeLast.prev;
+			nodeLast.prev = null;
+			nodeLast.next = nodeFirst.next;
+			nodeFirst.next =null;
+			return queue;
+		}
+
+	}
+
+
+	public String toString(){
+		StringBuilder sb = new StringBuilder("[");
+		Node node = this.first;
+		for(int i=0;i<size;i++){
+			sb.append(node.item + ",");
+			node = node.next;
+		}
+		String str = sb.toString();
+		if(size > 0){
+		str = str.subString(str,0,str.length()-2);
+		
+		}
+		str +=")";
+		return str;
+	}
+
+}
+
+
+
+
+第二题：
+
+public class Demo{
+	public static void main(String [] args){
+		Producer pro = new Producer();
+		Guest guest = new Guest(pro);
+		new Thread(pro).start();
+		new Thread(guest).start();
+	}
+
+}
+
+
+
+class Producer extends Runnable{
+
+	private int num;
+	public boolean flag = false;
+	public void run(){
+		while(true){
+			Thread.notifyAll();
+			synchronize(pro){
+				int reed = 1000 - num;
+				num += Math.Random*(reed);
+				System.out.println("本次生成"+num);
+				if(flag == false){
+					flag = true;
+					this.wait();
+			}
+				
+		}
+		
+	}
+	public int getNum(){
+		return num;
+	}
+	
+	public void setNum(int num){
+		this.num -= num;
+	}
+
+
+}
+
+class Guest extends Runnable{
+	private  Producer pro;
+	
+	public Guest(Producer pro){
+		this.pro = pro;
+	}
+	
+	public void Run{
+		while(true){
+			synchronize(pro){
+				Thread.notifyAll();
+				int reduce = Math.Random*(pro.num);
+				pro.setNum(reduce);
+				System.out.println("本次消费"+reduce+"剩余"+pro.getNum());
+				if(pro.flag == true){
+					pro.flag = false;
+					pro.wait();
+				}
+				
+			}
+		}
+		
+		
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
