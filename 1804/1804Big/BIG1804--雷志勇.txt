@@ -1,7 +1,7 @@
 一选这题
 1） E
 2） A	//AE
-3） E	//
+3） E	//ABCD
 4） C	//ABCD
 5） A
 6) C	//D
@@ -15,9 +15,9 @@
 13) A
 14) A B		//ABCD
 15) E
-16) C D E
+16) C D E	//C D
 17) A
-18) D E
+18) D E	// C E
 19) A
 20) B C E
 
