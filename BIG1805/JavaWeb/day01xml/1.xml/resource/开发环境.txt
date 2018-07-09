@@ -1,0 +1,10 @@
+1.开发工具统一使用Myeclipse 10 
+2.把jdk统一成jdk1.7x 
+3.笔记/html/css/js等 推荐使用everedit编写
+
+4.Myeclipse工作空间路径中，不要包含中文和空格
+5.把自己安装的jdk(1.7)整合到myeclipse中（详细操作见文档）
+6.调整字体、显示行号、恢复默认布局
+
+
+
