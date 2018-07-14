@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+		<!-- js内置对象 -->
+		<script type="text/javascript">
+			var str = "abcdeabc";
+			var strindex = str.charAt(3);
+			//alert(strindex)
+			
+			//一、字符串String
+			//1.将字符串中所有的"java"提取到一个数组中
+			var str = "zhang,java,wang,JAVA,li,java,zhao";
+			var regexp1 = /java/g
+			//alert(str.match(regexp1))
+			//2.将字符串中所有的"java"不分大小写提取到一个数组中
+			var regexp2 = /java/gi
+			//alert(str.match(regexp2))
+			//3.将所有的"java"不分大小写，全部换成"C++"
+			//alert(str.replace(regexp2,"C++"));
+			
+			//4.查找第一个"java"出现的位置(不分大小写)
+			//alert(str.search(regexp2))
+
+			//二、正则
+			//检查str字符串是否符合如下正则
+			var reg3 = /wang/;
+			var reg4 = /^zhao$/;
+			//alert(reg3.test(str))
+			//alert(reg4.test(str))
+
+			//三、数组
+			//对arr进行排序，思考排序后的顺序
+			var arr = ["aaa",123,"x",true,8];
+			//alert(arr.sort())
+
+			var date = new Date(2008,7,8,20,0,0)
+			//date = date.toLocaleString()
+			//alert(typeof date)
+			//alert(date.getTime())
+			
+			//四、Math对象
+			//1.返回一个1-100之间的随机整数
+			//alert(Math.ceil(Math.random()*100))
+			
+			//2.返回一个30-50之间的随机整数
+			//alert(Math.round(Math.random()*20+30))
+			
+			var a = "alert(3+2)"
+			
+			eval(a)
+
+			
+		</script>
+
+		
+		
+	</head>
+	<body>
+		js内置对象演示
+	</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>table练习</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+	body{
+		font-family: "微软雅黑"
+	}
+	h2, h4{ text-align: center; }
+	div#box1, div#box2 {
+		text-align:center;
+	}
+	hr{
+		margin: 20px 0;
+	}
+	table{ 
+		margin: 0 auto; 
+		width: 70%;
+		text-align: center;
+		border-collapse:collapse;
+	}
+	td, th{padding: 7px; width:20%;}
+	th{
+		background-color: #DCDCDC;
+	}
+</style>
+
+
+
+
+
+
+</head>
+
+<body>
+	<h2>添加新员工</h2>
+	<div id="box1">
+		ID：<input type="text" name="id"/>
+		姓名：<input type="text" name="name"/>
+		邮箱：<input type="text" name="email"/>
+		工资：<input type="text" name="salary"/>
+		<input type="button" id="add" value="添加"/>
+	</div>
+	<hr/>
+	<table border="1">
+		<tr>
+			<th>
+				<input type="checkbox" id="all"/>
+				<!--全选-->
+			</th>
+			<th>ID</th>
+			<th>姓名</th>
+			<th>邮箱</th>
+			<th>工资</th>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox"/>
+			</td>
+			<td>1</td>
+			<td>宋江</td>
+			<td>sj@163.com</td>
+			<td>12000</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox"/>
+			</td>
+			<td>2</td>
+			<td>武松</td>
+			<td>ws@163.com</td>
+			<td>10500</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox"/>
+			</td>
+			<td>3</td>
+			<td>孙二娘</td>
+			<td>sen@163.com</td>
+			<td>11000</td>
+		</tr>
+	</table>
+	<h4><a href="#" id="del">删除选中</a></h2>
+
+	<hr/>
+
+	<div id="box2">
+		ID：<input type="text" name="id"/>
+		姓名：<input type="text" name="name"/>
+		邮箱：<input type="text" name="email"/>
+		工资：<input type="text" name="salary"/>
+		<input type="button" id="upd" value="修改"/>
+	</div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>全选反选问题</title>
+<script>
+	function checkAll(obj){
+		//让所有item的状态和全选保持一致
+		var items = document.getElementsByName("item");
+		for(var i=0; i<items.length; i++){
+			items[i].checked = obj.checked;
+		}
+	}
+	
+	window.onload = function(){	//当页面加载完成后获取所有的item
+		//获取所有的item, 给每一个item添加点击事件: 判断所有的item是否被选中, 如果是, 全选应该被选中, 如果不是, 全选应该取消!
+		var items = document.getElementsByName("item");
+		for(var i=0; i<items.length; i++){
+			items[i].onclick = function(){
+				var flag = true;
+				for(var j=0; j<items.length; j++){
+					if(!items[j].checked){
+						flag = false;
+						break;
+					}
+				}
+				document.getElementById("all1").checked = flag;
+
+				/*if(flag){
+					document.getElementById("all1").checked = true;
+				}else{
+					document.getElementById("all1").checked = false;
+				}*/
+			}
+		}
+		
+	}
+
+
+	function check(){
+		//获取所有的item, 将每一个item的状态取反.
+		var items = document.getElementsByName("item");
+		for(var i=0; i<items.length; i++){
+			items[i].checked = !items[i].checked;
+		}
+
+		//==============================
+		//判断所有的item是否被选中, 如果是, 全选应该被选中, 如果不是, 全选应该取消!
+		var flag = true;
+		for(var j=0; j<items.length; j++){
+			if(!items[j].checked){
+				flag = false;
+				break;
+			}
+		}
+		document.getElementById("all1").checked = flag;
+	}
+
+	function getSum(){
+		//获取所有的item, 循环遍历, 依次判断每一个item是否被选中, 如果是累加value
+		var items = document.getElementsByName("item");
+		var sum = 0;
+		for(var i=0; i<items.length;i++){
+			if(items[i].checked){
+				sum += 	parseFloat(items[i].value);	
+			}
+		}
+		document.getElementById("sumId").innerHTML = "总金额为: "+sum;
+	}
+
+	
+
+	
+	
+</script>
+</head>
+
+<body>
+<div>商品列表</div>
+<input type="checkbox" name="item" value="3000" />笔记本3000元<br />
+<input type="checkbox" name="item" value="2500"/>HTC手机2500<br />
+<input type="checkbox" name="item" value="8000" />苹果电脑8000<br />
+<input type="checkbox" name="item" value="1500" />IPAD1500<br />
+<input type="checkbox" name="item" value="400" />玩具汽车400<br />
+
+<input type="checkbox" id="all1" name="all" onclick="checkAll(this)"/>全选<br />
+<input type="checkbox" id="all2" name="all" onclick="check()"/>反选<br />
+
+<input type="button" value="总金额" onclick="getSum()" /><span id="sumId"></span>
+</body>
+</html>

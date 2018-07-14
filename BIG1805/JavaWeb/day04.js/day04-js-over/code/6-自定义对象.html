@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+		<!-- 自定义对象 -->
+		<script type="text/javascript">
+			//1.分别用两种方式定义一个对象，包含姓名和年龄，以及弹出姓名年龄的方法
+			//方式一
+			function Persion(){}
+			var p1 = new Persion();
+			p1.name="刘能";
+			p1.age=20;
+			p1.run=function(){
+				alert(this.name+":"+this.age);
+			}
+			//alert(p1.name)
+			//p1.run();
+			function Persion2(name,age){
+				this.name=name;
+				this.age=age;
+				this.run = function(){
+					alert(this.name+"_"+this.age)
+				}
+			}
+			var p2 = new Persion2("小沈阳",18);
+			//p2.run();
+			//方式二
+			var p3 = {
+				"name" : "宋小宝",
+				"age" : 19,
+				"run" : function(){
+					alert(this.name+"?"+this.age)
+				}
+			}
+			//alert(p3.name)
+			var key = "name";
+			
+			alert(p3[key]);
+			p3.run();
+			
+
+			
+		</script>
+
+		
+		
+	</head>
+	<body>
+		自定义对象
+	</body>
+</html>

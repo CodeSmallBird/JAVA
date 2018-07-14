@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+		<!-- BOM -->
+		<script type="text/javascript">
+			//window对象
+			//1.在按钮点击时弹出提示框
+
+
+			
+			//2.输入框1获得焦点时弹出提示框
+
+
+			
+			//3.输入框2失去焦点时弹出提示框
+
+
+			
+			//4.弹出输入框3中的value值
+			//获取输入框3的input按钮
+			var inp = document.getElementById("input3");
+			
+				
+			//5.点击删除商品按钮，弹出提示是否删除,如果确定，则弹出商品已删除，否则弹出商品还在
+
+
+
+
+			
+			//location对象
+			//1.弹出当前url
+
+			
+			//2.将页面url设置为"http://www.baidu.com"
+			
+
+			
+		</script>
+
+		
+		
+	</head>
+	<body>
+		<input type="button" name="test1" value="按钮" onclick="clickfn()"/><br /><br />
+		输入框1：<input type="text" name="test2" onfocus="focusfn()"/><br /><br />
+		输入框2：<input type="text" name="test3" onblur="blurfn()"/><br /><br />
+		输入框3：<input type="text" name="test4" id="input3" value="第三个输入框"/><br /><br />
+		<input type="button" name="test5" value="删除商品"  onclick="delfn()"/>
+	</body>
+</html>

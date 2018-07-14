@@ -1,0 +1,74 @@
+ <!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+		<style type="text/css">
+			div{
+				border:2px solid green;
+			}
+			#box{
+				width: 400px;
+				height: 500px;
+				font-size: 26px;
+				border:2px solid #000000;
+			}			
+			#div1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				/*外边距*/
+				margin: 20px;/*四边*/
+				margin: 20px 40px;/*上下、左右*/
+				margin: 20px 30px 40px 50px;/*上右下左*/
+				margin-top: 40px;
+				margin-bottom: 20px;
+				margin-left: 10px;
+				margin-right: 30px;
+				/*边框*/
+				border: 10px solid pink;
+				border-bottom: 20px solid grey;
+				border-top: 20px solid green;
+				border-left: 20px solid blue;
+				border-right: 20px solid yellow;
+				
+			}			
+			#div2{
+				width: 200px;
+				height: 200px;
+				background-color: blue;
+
+				margin-top: 30px;
+				/*内边距*/
+				padding: 20px;/*四边*/
+				padding: 30px 10px;/*上下、左右*/
+				padding: 10px 20px 30px 40px;/*上右下左*/
+				padding-bottom: 20px;
+				padding-left: 20px;
+				padding-right: 20px;
+				padding-top: 20px;
+			}
+			#d1{
+				width:0;
+				height:0;
+				border-bottom: 200px solid grey;
+				border-top: 200px solid green;
+				border-left: 200px solid blue;
+				border-right: 200px solid yellow;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box">
+			<div id="div1">这是一个div</div>
+			<div id="div2">div2</div>
+			
+		</div>
+
+		<br /><br /><br /><br /><br /><br />
+		<div id="d1">
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>扩展选择器</title>
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	<!--
+	练习:
+		1.后代选择器
+			将div下所有的span标签的字体大小设置为22px, 背景颜色设置为#DDA0DD
+		2.子元素选择器
+			将div下所有的span子元素标签的字体大小设置为16px, 背景颜色设置为#DEB887
+		3.分组选择器
+			将span1、span2和 p标签下的 span的背景颜色设置为 #F4A460
+		4.属性选择器
+			(1)将所有有class属性的元素的边框设置为2px、实线、灰色.
+			(2)将所有的type="text"的<input>标签的背景颜色设置为red, 设置字体首行缩进10px
+		5.相邻兄弟选择器
+			(1)将id为p1元素后面的p元素的背景颜色设置为 #DB7093
+		6.设置a标签(去掉边框)
+			未点击时的状态是{ 
+				font-size:24px;
+				text-decoration: none;/* 无下划线 */
+			}
+			光标移入的状态是{
+				color:green;
+				font-size:36px;
+				text-decoration: underline;/* 有下划线 */
+			}
+			被点击时的状态是{
+				color:#8FBC8F;
+				font-size:50px;
+				text-decoration: none;/* 无下划线 */
+			}
+			被点击后的状态是{
+				color:gray;
+				font-size:24px;
+			}
+			
+	-->
+		<style type="text/css" >
+			/* 为了看着方便给所有标签都加上边框 */
+			div,span,p,input{border: 1px solid red;}
+			
+			/* 1.后代选择器 */
+
+			/* 2.子元素选择器 */
+			
+			/* 3.分组选择器 */
+			
+			/* 4.属性选择器 */
+			
+
+			/* 5.相邻兄弟选择器 */
+			
+
+			/* 6.伪元素选择器 */
+			
+
+		</style>
+	</head>
+	<body>
+		<div id="d1">
+			div222
+			<span>div下的span</span>
+			<font>
+				fontxxx
+				<span>font下的span</span>
+				fontxxx
+			</font>
+		</div>
+		<span class="c1">
+			span111
+		</span> &nbsp;&nbsp;&nbsp;
+		<span class="c2">
+			span222
+		</span> &nbsp;&nbsp;&nbsp;
+		<p id="p1">
+			ppp111<span>p1-span1</span>xxxxxx
+		</p>
+		<p>
+			ppp222
+		</p>
+		<a href="#">
+			a1111
+		</a> &nbsp;&nbsp;&nbsp;
+		<a href="#">
+			a2222
+		</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		
+		<input type="text" name="usename" value="aaaaa" />
+		<input type="button" value="按钮" />
+		
+	</body>
+</html>
