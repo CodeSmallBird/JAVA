@@ -1,0 +1,605 @@
+数据库
+一.数据库概述
+	1.数据库: 存储数据的仓库
+		层次式数据库, 网络式数据库, 关系型数据库
+
+		常见的关系型数据库:
+			SqlServer
+			Oracle
+			MySql
+			DB2
+			...
+		
+	2.MySql数据库的安装与配置
+		安装的路径不要有中文和空格
+		默认的端口3306不要去改, 保持默认即可
+	
+	3.登陆或退出MySql客户端命令
+		登录：mysql -uroot -p123 -h localhost；
+		
+		-u：后面的root是用户名，这里使用的是超级管理员root；
+		-p：后面的123是密码，这是在安装MySQL时就已经指定的密码；
+		-h：后面给出的localhost是服务器主机名，它是可以省略的，例如：mysql -u root -p 123；
+
+		退出：quit或exit；
+
+		扩展: 通过命令启动、停止、删除服务(mysql5.5)
+			启动：net start 服务名称
+			关闭：net stop 服务名称
+			删除：sc delete 服务名称 
+			(如果服务名中间有空格，就需要前后加引号)
+			
+	4.MySql常见的概念
+		数据库服务器(mysql软件)
+		数据库 jd db_jd  taobao db_taobao
+		数据库表	User tb_user	Product	tb_prod orders
+		表记录	User user = new User("张三")
+
+
+二.SQL语言 
+	SQL是操作关系型数据库通用的语言(mysql, Oracle, sqlserver)
+	SQL是非过程性语言
+	SQL是一个标准，各大数据库厂商都根据该标准提供了实现。
+	数据库厂商为了增强数据库的功能，添加了一些非标准的SQL，称之为数据库的“方言”。
+
+	!利用sql可以操作数据库（创建、删除、修改、查看数据库、选中数据库）
+	!利用sql可以操作表（创建、删除、修改、查询）
+	!!!利用sql可以操作表记录（创建、删除、修改、!!!查询）
+
+三.利用sql语句来操作数据库
+	1.创建数据库
+		语法：
+			CREATE  DATABASE  [IF NOT EXISTS]  db_name  [create_specification [, create_specification] ...] 
+
+			create_specification:
+			[DEFAULT] CHARACTER SET charset_name  |  [DEFAULT] COLLATE collation_name 
+			其中charset_name是为数据库指定的默认字符集
+			Collate是为数据库指定的默认校对规则
+			( 校对规则是在字符集内用于比较字符的一套规则,可以控制select查询时where条件大小写是否敏感的规则。)
+		练习：
+			~创建一个名称为mydb1的数据库。
+				create database mydb1;
+				
+			~创建一个使用gbk字符集的mydb2数据库。
+				create database mydb2 character set gbk;
+				
+	2.查看数据库
+		语法：
+			显示所有数据库：
+				SHOW DATABASES
+			显示数据库创建语句：
+				SHOW CREATE DATABASE db_name
+
+		练习：
+			~查看当前数据库服务器中的所有数据库 
+				SHOW DATABASES;
+			~查看前面创建的mydb2数据库的定义信息
+				SHOW CREATE DATABASE mydb2;
+					
+	3.修改数据库
+		语法：
+			ALTER DATABASE db_name  [alter_specification [, alter_specification] ...] 
+
+			alter_specification:    
+			[DEFAULT] CHARACTER SET charset_name  | [DEFAULT] COLLATE collation_name
+		练习：
+			~查看服务器中的数据库，并把mydb2库的字符集修改为utf8
+				alter database mydb2 character set utf8;
+				
+	4.删除数据库
+		语法：
+			DROP DATABASE  [IF EXISTS]  db_name 
+		练习：
+			~删除前面创建的mydb1数据库 
+				DROP DATABASE mydb1;
+	5.选择数据库
+		语法：
+			选择数据库:use db_name;
+			查询当前选择的数据: select database();
+
+			没有退出数据库的命令,如果想退出当前数据库进入另一个数据,直接use 另一个数据库就可以了 
+
+
+四.利用sql语句来操作数据库表
+	0.MySQL中常见的数据类型
+		(1)字符串类型
+			a)char(n) 定长字符串  
+				stuid char(10) 255
+				
+			b)varchar(n) 不定长字符串 
+				username  varchar(10)
+				255 (5.0以后) 65535
+			
+		(2)数值类型
+			TINYINT:占用1个字节，相对于java中的byte
+			SMALLINT:占用2个字节，相对于java中的short
+			INT：占用4个字节，相对于java中的int
+			BIGINT：占用8个字节，相对于java中的long
+			FLOAT：4字节单精度浮点类型，相对于java中的float
+	  		DOUBLE：8字节双精度浮点类型，相对于java中的double
+	  		
+		(3)大数据类型
+			BLOB：
+				大二进制类型，可以存入二进制类型的数据，通过这个字段，可以将图片、音频、视频等数据以二进制的形式存入数据库。最大为4GB。
+
+			TEXT： 
+				大文本，被声明为这种类型的字段，可以保存大量的字符数据，最大为4GB。
+				
+			注意：text属于mysql的方言，在其他数据库中为clob类型
+
+		(4)日期类型
+			DATE：日期	2015-11-05
+			TIME：时间	格式 'HH:MM:SS' 19:19:19
+			DATETIME：日期时间	2015-11-05 19:19:19	年份范围：1000~9999
+			TIMESTAMP：时间戳	2015-11-05 19:19:19	年份范围：1970~2037
+			**DATETIME和TIMESTAMP的区别？
+				* DATETIME和TIMESTAMP显示的结果是一样的，都是固定的"YYYY-MM-DD HH:MM:SS"的格式
+
+				* DATETIME支持的范围是'1000-01-01 00:00:00'到'9999-12-31 23:59:59'。TIMESTAMP的显示范围是'1970-01-01 00:00:00'到2037年，且其实际的存储值为1970年到当前时间的毫秒数。
+				
+				* 在建表时，列为TIMESTAMP的日期类型可以设置一个默认值，而DATETIME不行。
+
+				* 在更新表时，可以设置TIMESTAMP类型的列自动更新时间为当前时间。
+
+		(5)逻辑型
+			bit 0/1	0/1
+			
+	1.字段的约束
+		主键约束：primary key 值必须唯一且不能为空	auto_increment	自动增长
+		唯一约束：unique	值必须唯一
+		非空约束：not null	值不能为空
+		
+		外键约束：(放到后面单讲)
+
+mydb1 utf8
+dept utf8
+emp	 gbk
+
+
+	
+		
+	2.新增表
+		语法:
+			CREATE TABLE table_name
+			(
+				field1  datatype,
+				field2  datatype,
+				field3  datatype
+			)[character set 字符集] [collate 校对规则]  
+			field：指定列名　datatype：指定列类型
+			
+			注意：创建表时，要根据需保存的数据创建相应的列，并根据数据的类型定义相应的列类型。
+			创建表时，一般不需要指定字符集编码和校对规则，和数据库保持一致即可。
+			
+		练习:
+			~创建employee表
+				create table employee(
+					id int,
+					name varchar(50),
+					gender bit,
+					birthday date,
+					entry_date date,
+					job varchar(50),
+					salary double,
+					resume text
+				);
+
+				============================
+				create table employee(
+					id int primary key auto_increment,
+					name varchar(50) unique,
+					gender bit not null,
+					birthday date,
+					entry_date date,
+					job varchar(50),
+					salary double,
+					resume text
+				);
+	3.查看表
+		语法：
+			查看表结构：
+			desc tabName
+			查看当前所有表：
+			show tables
+			查看当前数据库表建表语句 
+			show create table tabName;
+	4.修改表
+		语法：
+			增加列：
+			ALTER TABLE tabname ADD (column datatype [DEFAULT expr][, column datatype]...);
+
+			修改列：
+			ALTER TABLE tabname MODIFY (column datatype [DEFAULT expr][, column datatype]...);
+
+			删除列：
+			ALTER TABLE tabname DROP (column);
+
+			修改表名：
+			ALTER TABLE old_tabname RENAME TO new_tabname;
+			或
+			RENAME TABLE old_tabname TO new_tabname;
+
+			修改列名称：
+			ALTER TABLE tabname CHANGE [COLUMN] old_col_name new_col_name datatype
+
+			修改列的顺序：
+			ALTER TABLE tabname MODIFY col_name1 datatype AFTER col_name2;
+
+			修改表的字符集：
+			ALTER TABLE tabname CHARACTER SET character_name;
+		练习：
+			~在上面员工表的基础上增加一个image列。
+				alter table employee add image blob;
+				
+			~修改job列，使其长度为60。
+				alter table employee modify job varchar(60);
+				
+			~删除gender列。
+				alter table employee drop gender;
+				
+			~表名改为user。
+				alter table employee rename to user;
+				或
+				rename table user to employee;
+				
+			~列名name修改为username
+				alter table employee change name username varchar(100);
+				
+			~将image插入到id列的后面
+				alter table employee modify image blob after id;
+				
+			~修改表的字符集为GBK
+				alter table employee character set gbk;
+	5.删除表
+		语法：
+			DROP TABLE tabname;
+		练习：
+			~删除user表
+			drop table user;
+
+五.利用sql语句来操作数据库表记录
+	1.INSERT
+		语法：
+			INSERT INTO tabname [(column [, column...])] VALUES (value [, value...]);
+		注意：
+			插入的数据应与字段的数据类型相同
+			数据的大小应在列的规定范围内
+			在values中列出的数据位置必须与被加入的列的排列位置相对应
+			字符串和日期格式的数据要用单引号引起来
+			如果要插入所有字段可以省写列列表，直接按表中字段顺序写值列表
+			练习：
+			~向员工表中插入三条数据
+				insert into employee(id, name, gender, birthday, entry_date, job, salary, resume) values(null, '刘备', 1, '1870-4-1', '1875-4-1', 'CEO', 88888, '牛逼!!!');
+
+				insert INTO employee values(null, '张飞', 1, '1876-5-1', '1885-1-1', '大数据工程师', 15000, '阉人张飞!');
+				
+				insert INTO employee values(null, '关羽', 1, '1876-5-1', '1885-1-1', '保镖', 11000, '打架的一把好手!!');
+				
+				insert INTO employee values(null, '小乔', 0, '1889-6-1', '1895-1-1', '程序员鼓励师', 25000, '美女!');
+
+				
+			**乱码问题: 
+				**乱码问题：客户端发送的数据是GBK的，而服务器使用的utf-8的编码来处理客户端发来的数据，两端使用的编码不一致导致乱码。
+
+				**解决方法1：在客户端可以通过 set names gbk; 通知服务器使用指定码表来处理客户端发送的数据。这种方式只对当前cmd命令窗口有效，每次新开的窗口都要设置一次。
+				**解决方式2：可以通过修改MySQL安装目录下的my.ini文件(57行)中的配置，来指定服务器端使用的码表。这种方式一劳永逸。(注意: 配置完成后需要重启服务器!!);
+
+	2.UPDATE
+		语法：
+			UPDATE tab_name SET col_name1=expr1 [, col_name2=expr2 ...]  [WHERE where_definition]    
+			UPDATE语法可以用新值更新原有表行中的各列。
+			SET子句指示要修改哪些列和要给予哪些值。
+			WHERE子句指定应更新哪些行。如没有WHERE子句，则更新所有的行。
+		练习：
+			~将所有员工薪水修改为5000元。
+				update employee set salary=5000;
+			~将姓名为’小乔’的员工薪水修改为3000元。
+				update employee set salary=3000 where name='小乔';
+			~将姓名为'刘备'的员工薪水修改为4000元,
+				update employee set salary=4000 where name='刘备';
+			~将关羽的薪水在原有基础上增加1000元。
+				update employee set salary = salary + 1000 where name='关羽'; ##mysql不支持"+="
+				
+	3.DELETE
+		语法：
+			delete from tab_name [WHERE where_definition]
+			where用来筛选要删除的记录，如果不使用where子句，将删除表中所有数据。
+			delete语句不能删除某一列的值（可使用update）
+			delete语句仅删除记录，不删除表本身。如要删除表，使用drop table语句。
+
+			TRUNCATE TABLE tab_name语句也可以删除表中数据，它和delete有所不同。
+			delete是一条条删除记录，truncate是摧毁整表再重建相同结构的表，truncate效率更高。
+
+		练习：
+			~删除表中名称为’关羽’的记录。
+				delete from employee where name='关羽';
+			~删除表中所有记录。
+				delete from employee;
+			~使用truncate删除表中记录。
+				truncate table employee;
+
+	!!!4.SELECT
+		(1)基本的查询
+		语法：
+			SELECT [DISTINCT] *|{column1, column2. column3..} FROM	table_name;
+			select 指定查询哪些列的数据。
+			column指定列名。
+			*号代表查询所有列。
+			from指定查询哪张表。
+			DISTINCT可选，指显示结果时，是否剔除重复数据
+
+		练习：
+		create table exam(
+			id int primary key auto_increment,
+			name varchar(20) not null,
+			chinese double,
+			math double,
+			english double
+		);
+
+		insert into exam values(null,'关羽',85,76,70);
+		insert into exam values(null,'张飞',70,75,70);
+		insert into exam values(null,'赵云',90,65,95);
+		insert into exam values(null,'张三丰',82,79,null);
+
+		~查询表中所有学生的信息。
+			select * from exam;
+			
+		~查询表中所有学生的姓名和对应的英语成绩。
+			select name, english from exam;
+		~过滤表中重复数据。
+			select distinct english from exam;
+		~在所有学生分数上加10分特长分显示。
+			select id, name, math+10 as 数学总分, chinese+10 as 语文总分, english+10 英语总分 from exam;## as用来定义别名, as可以省略不写!!
+
+		~统计每个学生的总分。
+			select id, name, math+chinese+english 总分 from exam;##ifnull函数  ifnull(english, 0);
+
+			select id, name, math+chinese+ifnull(english, 0) 总分 from exam;
+			
+		~使用别名表示学生总分。
+			select id, name, math+chinese+ifnull(english, 0) 总分 from exam;
+			
+			
+		(2)使用where子句的查询
+		语法：
+			Select *|列名 from tablename [WHERE where_definition]
+		
+		练习：
+			~查询姓名为关羽的学生成绩
+				select * from exam where name='关羽';
+			
+			~查询英语成绩大于90分的同学
+				select * from exam where english>90;
+				
+			~查询总分大于230分的所有同学
+				select id, name, math+chinese+ifnull(english, 0) as 总分 from exam where math+chinese+ifnull(english, 0)>230;
+				
+				###在where子句中不能使用别名和聚合函数!!!
+				
+			~查询语文分数在 80~100之间的同学。
+				select * from exam where chinese>=80 and chinese<=100;
+				或
+				select * from exam where chinese between 80 and 100;
+				
+			~查询数学分数为75,76,77的同学。再查询分数不在这个范围内的同学
+				select * from exam where math=75 or math=76 or math=77;
+				select * from exam where math not in(75, 76, 77);
+
+				#############################
+				
+				select * from exam where not(math=75 or math=76 or math=77);
+
+				select * from exam where math!=75 and math!=76 and math!=77;
+
+				select * from exam where math in(75, 76, 77);
+
+				
+			~查询所有姓张的学生成绩。
+				%: 表示零个或多个字符  张%	%三	
+				_: 表示单个字符	  张_	张__
+				like: 模糊查询	%三%
+				
+				select * from exam where name like '张%';
+				select * from exam where name like '%三%';
+				
+			~查询数学分>70，语文分>80的同学。
+				select * from exam where math>70 and chinese>80;
+			
+		(3)排序查询
+		语法：
+			SELECT column1, column2. column3.. FROM table order by column asc|desc;
+			Order by 指定排序的列，排序的列即可是表中的列名，也可以是select 语句后指定的列名。
+			Asc 升序(默认)、Desc 降序
+			ORDER BY 子句应位于SELECT语句的结尾。
+		练习：
+			~对英语成绩排序后输出。
+				select english from exam order by english;
+			~对总分排序按从高到低的顺序输出
+				select math+chinese+ifnull(english, 0) 总分 from exam order by math+chinese+ifnull(english, 0) desc;
+				select math+chinese+ifnull(english, 0) 总分 from exam order by 总分 desc;
+			
+			~对姓张的学生成绩排序输出
+				select math+chinese+ifnull(english, 0) 总分 from exam where name like '张%' order by 总分;
+
+		(4)聚合函数
+			语法：
+			求符合条件的记录中指定列的记录数
+			    select count(列名)… from tablename [WHERE where_definition]
+			求符合条件的记录中指定列的和值
+			    Select sum(列名)… from tablename [WHERE where_definition]
+			求符合条件的记录中指定列的平均值
+			    Select avg(列名)… from tablename [WHERE where_definition]
+			求符合条件的记录中指定列的最大值
+			    Select max(列名)… from tablename [WHERE where_definition]
+			求符合条件的记录中指定列的最小值
+			    Select min(列名)… from tablename [WHERE where_definition]
+			练习：
+			~统计一个班级共有多少学生？
+				select count(id) as 总人数 from exam;
+			~统计数学成绩大于75的学生有多少个？
+				select count(*) as 总人数 from exam where math>75;
+				
+			~统计总分大于230的人数有多少？
+				select count(*) from exam where math+chinese+ifnull(english, 0)>230;
+				
+			~统计一个班级数学总成绩？
+				select sum(math) from exam;
+			~统计一个班级语文、英语、数学各科的总成绩
+				select sum(math) 数学总分, sum(chinese) 语文总分, sum(english) 英语总分 from exam;
+
+			~统计一个班级语文、英语、数学的成绩总和
+				select sum(math+chinese+ifnull(english,0)) 全班总分 from exam;
+
+				select sum(math)+sum(chinese)+sum(english) 全班总分 from exam;
+			~统计一个班级英语成绩平均分
+				select avg(ifnull(english, 0)) from exam
+			~求一个班级数学平均分？
+				select avg(math) from exam
+			~求一个班级总分平均分？
+				select avg(math+chinese+ifnull(english,0)) 全班总分 from exam;
+				
+			~求班级总分最高分和最低分
+				select max(math+chinese+ifnull(english,0)) 全班总分 from exam;
+				select min(math+chinese+ifnull(english,0)) 全班总分 from exam;
+
+		(5)分组查询
+		语法：
+		SELECT column1, column2. column3.. FROM	tablename group by column having ...
+ 
+		练习：
+		create table orders(
+			id int,
+			product varchar(20),
+			price float
+		);
+
+		insert into orders(id,product,price) values(1,'电视',900);
+		insert into orders(id,product,price) values(2,'洗衣机',100);
+		insert into orders(id,product,price) values(3,'洗衣粉',90);
+		insert into orders(id,product,price) values(4,'桔子',9);
+		insert into orders(id,product,price) values(5,'洗衣粉',90);
+
+		~对订单表中商品归类后，显示每一类商品的总价
+			select * from orders group by product;
+			select sum(price) from orders group by product;
+			##总价 = 单价*数量
+		~查询购买了几类商品，并且每类总价大于100的商品
+			select * from orders group by product having sum(price)>100;
+			
+		~查询单价小于100而总价大于100的商品的名称.
+			select * from orders where price<100 group by product having sum(price)>100;
+			select * from orders having price<100;
+
+		**where子句和having子句都可以进行过滤, 但是使用场景有所不同:
+		* where子句对分组之前的数据进行过滤,不能使用聚合函数和别名
+		* having子句对分组之后的数据进行过滤,可以使用聚合函数和别名
+		* 使用where子句的地方一般都可以用having替代，但是使用having的地方一般不能用where替代
+
+六.数据库的备份与恢复
+	(1)备份数据库, 在cmd窗口中:
+		mysqldump -uroot -p db_name > d:/1.sql
+
+		mysqldump -uroot -p mydb1 > e:/1.sql
+
+	(2)恢复数据到数据库
+		方式一: 在cmd中:
+			mysql -uroot -p db_name < d:/1.sql
+			
+			mysql -uroot -p mydb3 < d:/1.sql
+			
+		方式二: 在mysql客户端中 
+			source d:/1.sql
+	
+七.外键约束
+	外键: 用来通知数据库表与表字段之间的对应关系, 并让数据库帮我们维护这样关系的键就叫做外键
+	外键作用: 维护数据的完整性 一致性
+	添加外键: foreign key
+	案例: 
+		create table dept(
+			id int primary key auto_increment,
+			name varchar(20)
+		);
+
+		insert into dept values(null, '财务部');
+		insert into dept values(null, '人事部');
+		insert into dept values(null, '科技部');
+		insert into dept values(null, '销售部');
+
+		create table emp(
+			id int primary key auto_increment,
+			name varchar(20),
+			dept_id int, 
+			foreign key(dept_id) references dept(id)
+		);
+		
+		insert into emp values(null, '张三', 1);
+		insert into emp values(null, '李四', 2);
+		insert into emp values(null, '老王', 3);
+		insert into emp values(null, '赵四', 4);
+		insert into emp values(null, '刘能', 4);
+
+八.多表设计 
+	1-*：在多的一方添加列保存一的一方的主键来作为外键, 来保存两张表之间的关系
+	1-1：在任意一方添加列保存另一方的主键作为外键, 来保存两张表之间的关系
+	*-*：在一张第三方的表中分别保存两张表的主键作为外键, 来保存两张表之间的关系，可以把多对多的关系拆分成两个一对多的关系来理解
+
+九.多表查询
+	案例
+		create table dept(
+			id int primary key auto_increment,
+			name varchar(20)
+		);
+
+		insert into dept values(null, '财务部');
+		insert into dept values(null, '人事部');
+		insert into dept values(null, '科技部');
+		insert into dept values(null, '销售部');
+
+		create table emp(
+			id int primary key auto_increment,
+			name varchar(20),
+			dept_id int
+		);
+
+		insert into emp values(null, '张三', 1);
+		insert into emp values(null, '李四', 2);
+		insert into emp values(null, '老王', 3);
+		insert into emp values(null, '刘能', 5);
+
+		需求：查询出部门信息和部门所对应的员工信息
+			select * from dept, emp;
+			
+		笛卡尔积查询：
+			两张表相乘得出来的结果。如果左边表有m条记录，右边有n条记录，则查询出来的结果就是m*n条。这些查询结果中包含大量错误的结果，通常不会使用这种查询。
+			select * from dept, emp;
+
+			select * from dept, emp where emp.dept_id=dept.id;
+			
+			select * from dept d, emp e where e.dept_id=d.id;
+
+		内连接查询：左边表(dept)有且右边表(emp)也有的记录。
+			select * from dept d inner join emp e on e.dept_id=d.id;
+
+		
+		左外连接查询：在内连接查询的基础上，加上左边表有而右边表没有的记录
+			**查询出部门所对应的员工信息, 同时列出那些没有员工的部门
+			select * from dept left join emp on dept.id = emp.dept_id;
+
+		右外连接查询：在内连接查询的基础上，加上右边表有而左边表没有的记录。
+		**查询出部门所对应的员工信息, 同时列出那些没有部门的员工
+			select * from dept d right join emp e on e.dept_id=d.id;
+
+		全外连接查询：在内连接查询的基础上，加上左边表有而右边表没有的记录 和 右边表有而左边表没有的记录。
+			**查询出部门所对应的员工信息,同时列出那些没有员工的部门及些没有部门的员工
+			select * from dept d full join emp e on e.dept_id=d.id;##mysql不支持全外连接查询
+
+			**通过union关键字来模拟全外连接查询
+			select * from dept left join emp on emp.dept_id = dept.id 
+			union
+			select * from dept right join emp on emp.dept_id = dept.id;
+
+
+
+
+			
